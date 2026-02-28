@@ -1,0 +1,82 @@
+{
+  "agent_name": "Pattern Analysis Agent",
+  "agent_id": "69a32c757452fc0731a6395a",
+  "description": "Analyzes accumulated prediction history to identify common ground patterns -- combinations of signals that consistently predict correct outcomes. Surfaces top patterns by hit rate and sample size.",
+  "agent_type": "json",
+  "accessor": "result",
+  "auto_generated": true,
+  "response_schema": {
+    "patterns": [
+      {
+        "id": "string",
+        "name": "string",
+        "description": "string",
+        "signals": [
+          "string"
+        ],
+        "category": "string",
+        "hit_rate": "number",
+        "sample_size": "number",
+        "confidence_level": "string",
+        "recommended_action": "string",
+        "risk_level": "string"
+      }
+    ],
+    "anti_patterns": [
+      {
+        "id": "string",
+        "name": "string",
+        "description": "string",
+        "signals": [
+          "string"
+        ],
+        "fail_rate": "number",
+        "sample_size": "number",
+        "warning": "string"
+      }
+    ],
+    "summary": {
+      "total_patterns_found": "number",
+      "top_pattern_hit_rate": "number",
+      "most_reliable_category": "string",
+      "overall_recommendation": "string"
+    }
+  },
+  "example_response": {
+    "patterns": [
+      {
+        "id": "sample string",
+        "name": "sample string",
+        "description": "sample string",
+        "signals": [
+          "sample string"
+        ],
+        "category": "sample string",
+        "hit_rate": 0,
+        "sample_size": 0,
+        "confidence_level": "sample string",
+        "recommended_action": "sample string",
+        "risk_level": "sample string"
+      }
+    ],
+    "anti_patterns": [
+      {
+        "id": "sample string",
+        "name": "sample string",
+        "description": "sample string",
+        "signals": [
+          "sample string"
+        ],
+        "fail_rate": 0,
+        "sample_size": 0,
+        "warning": "sample string"
+      }
+    ],
+    "summary": {
+      "total_patterns_found": 0,
+      "top_pattern_hit_rate": 0,
+      "most_reliable_category": "sample string",
+      "overall_recommendation": "sample string"
+    }
+  }
+}

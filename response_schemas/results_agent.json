@@ -1,0 +1,67 @@
+{
+  "agent_name": "Results & Learning Agent",
+  "agent_id": "69a32c74931679f19b7d6d3d",
+  "description": "Fetches actual NHL game results and player stats, compares against stored projections, calculates flag accuracy rates, and updates historical accuracy logs.",
+  "agent_type": "json",
+  "accessor": "json",
+  "has_module_outputs": false,
+  "response_schema": {
+    "game_results": [
+      {
+        "game": "string",
+        "projected_total": "number",
+        "actual_total": "number",
+        "projected_away_goals": "number",
+        "actual_away_goals": "number",
+        "projected_home_goals": "number",
+        "actual_home_goals": "number",
+        "flags_projected": ["string"],
+        "flags_hit": ["string"],
+        "flags_missed": ["string"]
+      }
+    ],
+    "player_results": [
+      {
+        "player": "string",
+        "team": "string",
+        "projected_sog": "number",
+        "actual_sog": "number",
+        "projected_pts": "number",
+        "actual_pts": "number",
+        "flags_projected": ["string"],
+        "flags_hit": ["string"],
+        "flags_missed": ["string"]
+      }
+    ],
+    "accuracy": {
+      "overall_hit_rate": "number",
+      "flag_accuracy": {
+        "sure2": "number",
+        "o1_5_100": "number",
+        "u1_5_100": "number",
+        "two_g_plus": "number",
+        "three_g_plus": "number",
+        "u2_5": "number"
+      },
+      "confidence_calibration": [
+        {
+          "range": "string",
+          "accuracy": "number",
+          "sample_size": "number"
+        }
+      ]
+    },
+    "learning_insights": [
+      {
+        "category": "string",
+        "insight": "string",
+        "suggested_action": "string"
+      }
+    ],
+    "metadata": {
+      "date": "string",
+      "games_analyzed": "number",
+      "players_analyzed": "number"
+    }
+  }
+}

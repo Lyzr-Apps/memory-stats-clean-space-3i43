@@ -1,0 +1,22 @@
+{
+  "agents": {
+    "projection_agent": {
+      "agent_id": "69a32c744b95c3d826d18d64",
+      "name": "Projection Agent",
+      "provider": "perplexity",
+      "model": "sonar-pro"
+    },
+    "results_agent": {
+      "agent_id": "69a32c74931679f19b7d6d3d",
+      "name": "Results & Learning Agent",
+      "provider": "perplexity",
+      "model": "sonar-pro"
+    },
+    "pattern_agent": {
+      "agent_id": "69a32c757452fc0731a6395a",
+      "name": "Pattern Analysis Agent",
+      "provider": "openai",
+      "model": "gpt-4.1"
+    }
+  }
+}

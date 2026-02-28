@@ -1,0 +1,96 @@
+{
+  "agent_name": "Projection Agent",
+  "agent_id": "69a32c744b95c3d826d18d64",
+  "description": "Fetches live NHL team stats and player data via web search, processes through projection engine to generate game-level and player-level projections with betting flags.",
+  "agent_type": "json",
+  "accessor": "result",
+  "auto_generated": true,
+  "response_schema": {
+    "games": [
+      {
+        "game": "string",
+        "env": "string",
+        "away_sog": "number",
+        "home_sog": "number",
+        "away_goals": "number",
+        "home_goals": "number",
+        "total": "number",
+        "flags": [
+          "string"
+        ]
+      }
+    ],
+    "players": [
+      {
+        "player": "string",
+        "team": "string",
+        "opp": "string",
+        "env": "string",
+        "gp": "number",
+        "toi": "string",
+        "line": "string",
+        "pp": "string",
+        "sog": "number",
+        "p_2plus_sog": "number",
+        "p_3plus_sog": "number",
+        "pts": "number",
+        "p_1plus_pts": "number",
+        "sog_conf": "number",
+        "pts_conf": "number",
+        "flags": [
+          "string"
+        ]
+      }
+    ],
+    "metadata": {
+      "date": "string",
+      "num_games": "number",
+      "generated_at": "string",
+      "data_sources": "string"
+    }
+  },
+  "example_response": {
+    "games": [
+      {
+        "game": "sample string",
+        "env": "sample string",
+        "away_sog": 0,
+        "home_sog": 0,
+        "away_goals": 0,
+        "home_goals": 0,
+        "total": 0,
+        "flags": [
+          "sample string"
+        ]
+      }
+    ],
+    "players": [
+      {
+        "player": "sample string",
+        "team": "sample string",
+        "opp": "sample string",
+        "env": "sample string",
+        "gp": 0,
+        "toi": "sample string",
+        "line": "sample string",
+        "pp": "sample string",
+        "sog": 0,
+        "p_2plus_sog": 0,
+        "p_3plus_sog": 0,
+        "pts": 0,
+        "p_1plus_pts": 0,
+        "sog_conf": 0,
+        "pts_conf": 0,
+        "flags": [
+          "sample string"
+        ]
+      }
+    ],
+    "metadata": {
+      "date": "sample string",
+      "num_games": 0,
+      "generated_at": "sample string",
+      "data_sources": "sample string"
+    }
+  }
+}

@@ -1,0 +1,150 @@
+{
+  "agent_name": "Results & Learning Agent",
+  "agent_id": "69a32c74931679f19b7d6d3d",
+  "description": "Fetches actual NHL game results and player stats, compares against stored projections, calculates flag accuracy rates, and updates historical accuracy logs.",
+  "agent_type": "json",
+  "accessor": "result",
+  "auto_generated": true,
+  "response_schema": {
+    "game_results": [
+      {
+        "game": "string",
+        "projected_total": "number",
+        "actual_total": "number",
+        "projected_away_goals": "number",
+        "actual_away_goals": "number",
+        "projected_home_goals": "number",
+        "actual_home_goals": "number",
+        "flags_projected": [
+          "string"
+        ],
+        "flags_hit": [
+          "string"
+        ],
+        "flags_missed": [
+          "string"
+        ]
+      }
+    ],
+    "player_results": [
+      {
+        "player": "string",
+        "team": "string",
+        "projected_sog": "number",
+        "actual_sog": "number",
+        "projected_pts": "number",
+        "actual_pts": "number",
+        "flags_projected": [
+          "string"
+        ],
+        "flags_hit": [
+          "string"
+        ],
+        "flags_missed": [
+          "string"
+        ]
+      }
+    ],
+    "accuracy": {
+      "overall_hit_rate": "number",
+      "flag_accuracy": {
+        "sure2": "number",
+        "o1_5_100": "number",
+        "u1_5_100": "number",
+        "two_g_plus": "number",
+        "three_g_plus": "number",
+        "u2_5": "number"
+      },
+      "confidence_calibration": [
+        {
+          "range": "string",
+          "accuracy": "number",
+          "sample_size": "number"
+        }
+      ]
+    },
+    "learning_insights": [
+      {
+        "category": "string",
+        "insight": "string",
+        "suggested_action": "string"
+      }
+    ],
+    "metadata": {
+      "date": "string",
+      "games_analyzed": "number",
+      "players_analyzed": "number"
+    }
+  },
+  "example_response": {
+    "game_results": [
+      {
+        "game": "sample string",
+        "projected_total": 0,
+        "actual_total": 0,
+        "projected_away_goals": 0,
+        "actual_away_goals": 0,
+        "projected_home_goals": 0,
+        "actual_home_goals": 0,
+        "flags_projected": [
+          "sample string"
+        ],
+        "flags_hit": [
+          "sample string"
+        ],
+        "flags_missed": [
+          "sample string"
+        ]
+      }
+    ],
+    "player_results": [
+      {
+        "player": "sample string",
+        "team": "sample string",
+        "projected_sog": 0,
+        "actual_sog": 0,
+        "projected_pts": 0,
+        "actual_pts": 0,
+        "flags_projected": [
+          "sample string"
+        ],
+        "flags_hit": [
+          "sample string"
+        ],
+        "flags_missed": [
+          "sample string"
+        ]
+      }
+    ],
+    "accuracy": {
+      "overall_hit_rate": 0,
+      "flag_accuracy": {
+        "sure2": 0,
+        "o1_5_100": 0,
+        "u1_5_100": 0,
+        "two_g_plus": 0,
+        "three_g_plus": 0,
+        "u2_5": 0
+      },
+      "confidence_calibration": [
+        {
+          "range": "sample string",
+          "accuracy": 0,
+          "sample_size": 0
+        }
+      ]
+    },
+    "learning_insights": [
+      {
+        "category": "sample string",
+        "insight": "sample string",
+        "suggested_action": "sample string"
+      }
+    ],
+    "metadata": {
+      "date": "sample string",
+      "games_analyzed": 0,
+      "players_analyzed": 0
+    }
+  }
+}

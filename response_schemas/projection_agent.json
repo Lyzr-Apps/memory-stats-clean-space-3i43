@@ -1,0 +1,48 @@
+{
+  "agent_name": "Projection Agent",
+  "agent_id": "69a32c744b95c3d826d18d64",
+  "description": "Fetches live NHL team stats and player data via web search, processes through projection engine to generate game-level and player-level projections with betting flags.",
+  "agent_type": "json",
+  "accessor": "json",
+  "has_module_outputs": false,
+  "response_schema": {
+    "games": [
+      {
+        "game": "string",
+        "env": "string",
+        "away_sog": "number",
+        "home_sog": "number",
+        "away_goals": "number",
+        "home_goals": "number",
+        "total": "number",
+        "flags": ["string"]
+      }
+    ],
+    "players": [
+      {
+        "player": "string",
+        "team": "string",
+        "opp": "string",
+        "env": "string",
+        "gp": "number",
+        "toi": "string",
+        "line": "string",
+        "pp": "string",
+        "sog": "number",
+        "p_2plus_sog": "number",
+        "p_3plus_sog": "number",
+        "pts": "number",
+        "p_1plus_pts": "number",
+        "sog_conf": "number",
+        "pts_conf": "number",
+        "flags": ["string"]
+      }
+    ],
+    "metadata": {
+      "date": "string",
+      "num_games": "number",
+      "generated_at": "string",
+      "data_sources": "string"
+    }
+  }
+}
