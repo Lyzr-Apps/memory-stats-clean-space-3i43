@@ -5,14 +5,13 @@ import { callAIAgent } from '@/lib/aiAgent'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
 import { Badge } from '@/components/ui/badge'
-import { Textarea } from '@/components/ui/textarea'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
 import { Switch } from '@/components/ui/switch'
 import { Label } from '@/components/ui/label'
 import { Skeleton } from '@/components/ui/skeleton'
 import { ScrollArea } from '@/components/ui/scroll-area'
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table'
-import { IoRefresh, IoFilter } from 'react-icons/io5'
+import { IoRefresh, IoFilter, IoCalendar } from 'react-icons/io5'
 
 const PROJECTION_AGENT_ID = '69a32c744b95c3d826d18d64'
 
@@ -65,7 +64,6 @@ function envBadge(env?: string): string {
 }
 
 export default function ProjectionsSection({ showSample, activeAgentId, setActiveAgentId }: ProjectionsSectionProps) {
-  const [matchups, setMatchups] = useState('')
   const [loading, setLoading] = useState(false)
   const [games, setGames] = useState<GameProjection[]>([])
   const [players, setPlayers] = useState<PlayerProjection[]>([])
@@ -109,13 +107,14 @@ export default function ProjectionsSection({ showSample, activeAgentId, setActiv
   })
 
   const handleGenerate = async () => {
-    if (!matchups.trim()) return
     setLoading(true)
     setError(null)
     setActiveAgentId(PROJECTION_AGENT_ID)
     try {
+      const today = new Date()
+      const dateStr = today.toLocaleDateString('en-US', { weekday: 'long', month: 'long', day: 'numeric', year: 'numeric' })
       const result = await callAIAgent(
-        `Generate NHL projections for these matchups: ${matchups}. Today's date is ${new Date().toLocaleDateString()}.`,
+        `Today is ${dateStr}. Automatically look up the full NHL schedule for today, fetch all relevant team and player stats, and generate complete projections for every game being played today. Do NOT ask me for matchups — find them yourself via web search.`,
         PROJECTION_AGENT_ID
       )
       if (result.success) {
@@ -143,17 +142,14 @@ export default function ProjectionsSection({ showSample, activeAgentId, setActiv
   return (
     <div className="space-y-4">
       <Card className="border border-border bg-card">
-        <CardContent className="pt-4 pb-4 space-y-3">
-          <Textarea
-            placeholder="Enter matchups (e.g., CGY@PIT, CBJ@COL, NJD@TOR)"
-            value={matchups}
-            onChange={(e) => setMatchups(e.target.value)}
-            rows={2}
-            className="bg-input border-border text-foreground font-mono text-sm resize-none"
-          />
-          <div className="flex items-center gap-2">
-            <Button onClick={handleGenerate} disabled={loading || !matchups.trim()} className="bg-primary text-primary-foreground hover:bg-primary/90">
-              {loading ? <><IoRefresh className="mr-1.5 h-3.5 w-3.5 animate-spin" /> Generating...</> : 'Generate Projections'}
+        <CardContent className="pt-4 pb-4">
+          <div className="flex items-center gap-3">
+            <Button onClick={handleGenerate} disabled={loading} className="bg-primary text-primary-foreground hover:bg-primary/90">
+              {loading ? (
+                <><IoRefresh className="mr-1.5 h-3.5 w-3.5 animate-spin" /> Fetching schedule &amp; generating...</>
+              ) : (
+                <><IoCalendar className="mr-1.5 h-3.5 w-3.5" /> Generate Today&apos;s Projections</>
+              )}
             </Button>
             {metadata?.generated_at && (
               <span className="text-xs text-muted-foreground font-mono ml-auto">
@@ -161,7 +157,12 @@ export default function ProjectionsSection({ showSample, activeAgentId, setActiv
               </span>
             )}
           </div>
-          {error && <p className="text-sm text-destructive">{error}</p>}
+          {loading && (
+            <p className="text-xs text-muted-foreground mt-2">
+              The agent is searching for today&apos;s NHL schedule and fetching live stats. This may take a moment...
+            </p>
+          )}
+          {error && <p className="text-sm text-destructive mt-2">{error}</p>}
         </CardContent>
       </Card>
 
@@ -311,8 +312,9 @@ export default function ProjectionsSection({ showSample, activeAgentId, setActiv
       {!loading && displayGames.length === 0 && displayPlayers.length === 0 && (
         <Card className="border border-border bg-card">
           <CardContent className="py-12 text-center">
-            <p className="text-muted-foreground text-sm">Enter matchups above and click Generate to get projections</p>
-            <p className="text-muted-foreground text-xs mt-1">Format: CGY@PIT, CBJ@COL (away@home, comma separated)</p>
+            <IoCalendar className="h-8 w-8 text-muted-foreground/40 mx-auto mb-3" />
+            <p className="text-muted-foreground text-sm">Click &quot;Generate Today&apos;s Projections&quot; to get started</p>
+            <p className="text-muted-foreground text-xs mt-1">The agent will automatically find today&apos;s NHL schedule and generate projections for all games</p>
           </CardContent>
         </Card>
       )}
